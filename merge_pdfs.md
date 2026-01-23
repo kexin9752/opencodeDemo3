@@ -83,7 +83,7 @@ output_file = "merged_output.pdf"
 
 | 依赖名称 | 版本要求 | 说明 |
 |----------|----------|------|
-| PyPDF2 | >= 2.0.0 | PDF文件读写和处理库 |
+| PyPDF2 | >= 3.0.0 | PDF文件读写和处理库 |
 
 ### 4.2 系统要求
 
@@ -96,6 +96,9 @@ output_file = "merged_output.pdf"
 
 ```bash
 # 使用 pip 安装依赖
+pip install -r requirements.txt
+
+# 或者单独安装PyPDF2
 pip install PyPDF2
 
 # 或者使用国内镜像源（可选）
@@ -237,9 +240,54 @@ python merge_pdfs.py /path/to/pdfs output.pdf
 4. **大文件处理**：处理大型PDF文件时可能需要较长时间，请耐心等待
 5. **编码问题**：尽量使用UTF-8编码的文件名，避免特殊字符
 
-## 8. 扩展建议
+## 8. 单元测试
 
-如果您需要更高级的功能，可以考虑：
+本项目包含了针对PDF合并功能的单元测试，确保代码质量和功能正确性。
+
+### 8.1 测试结构
+
+测试代码位于 `tests/` 目录下：
+- `test_merge_pdfs.py`: 主要的测试文件，包含对PDF合并功能的测试
+- `README.md`: 测试运行说明
+
+### 8.2 运行测试
+
+有两种方式运行测试：
+
+#### 方法1: 使用测试运行脚本（推荐）
+```bash
+python run_tests.py
+```
+
+#### 方法2: 手动运行测试
+```bash
+# 运行所有测试
+python -m unittest discover tests
+
+# 运行特定测试文件
+python -m unittest tests.test_merge_pdfs
+
+# 详细输出模式
+python -m unittest -v tests.test_merge_pdfs
+```
+
+### 8.3 测试内容
+
+当前测试覆盖以下功能：
+1. PDF文件发现功能
+2. PDF合并核心功能
+3. 空目录处理情况
+
+### 8.4 测试依赖
+
+测试需要安装PyPDF2库：
+```bash
+pip install PyPDF2
+```
+
+## 9. 扩展建议
+
+如果如果您需要更高级的功能，可以考虑：
 
 - 添加错误处理机制
 - 支持PDF拆分功能
